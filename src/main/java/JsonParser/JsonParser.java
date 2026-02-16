@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class JsonParser {
     //Путь к настройкам
-    private static final String settingPath = "srs/main/java/resource/setting.json";
+    private static final String settingPath = "srs/main/resource/setting.json";
 
     public static String parseJson(String key) {
         try {
