@@ -14,11 +14,12 @@ import java.util.Objects;
 
 public class Server {
     //Имя сервера
-    private static final String SERVER_NAME = "ServerName";
+    private static final String SERVER_NAME = "ServerChatOnline";
     //Создаем логгер
     private static final Logger LOGGER = Logger.getInstance();
     //Путь для логгирования сервера
-    private static final String SERVER_LOGS = "srs/main/resources/server_logs.log";
+//    private static final String SERVER_LOGS = "srs/main/resources/server_logs.log";
+    private static final String SERVER_LOGS = "server_logs.log";
     //Получаем порт из файла
     private static final int PORT = Integer.parseInt(Objects.requireNonNull(JsonParser.parseJson("port")));
     //Сообщение о старте сервера

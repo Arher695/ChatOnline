@@ -6,6 +6,8 @@ import org.json.simple.parser.ParseException;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URL;
+import java.util.Objects;
 
 public class JsonParser {
     //Путь к настройкам
@@ -13,8 +15,9 @@ public class JsonParser {
 
     public static String parseJson(String key) {
         try {
+            URL url = JsonParser.class.getClassLoader().getResource("setting.json");
             //Парсим в Object
-            Object object = new JSONParser().parse(new FileReader(settingPath));
+            Object object = new JSONParser().parse(new FileReader(Objects.requireNonNull(url).getFile()));
             //преобразуем к JSONObject
             JSONObject jsonObject = (JSONObject) object;
             //Отдаем строку по ключу

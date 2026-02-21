@@ -17,7 +17,7 @@ public class Client {
     //Создаем логгер
     private static final Logger LOGGER = Logger.getInstance();
     //Путь для логирования клиентов
-    private static final String CLIENT_LOGS = "srs/main/resources/client_logs.log";
+    private static final String CLIENT_LOGS = "client_logs.log";
     //Получаем адрес хоста из файла
     private static final String HOST = JsonParser.parseJson("host");
     //Получаем порт из файла
