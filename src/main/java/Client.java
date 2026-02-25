@@ -1,17 +1,112 @@
-package Client;
 
-import JsonParser.JsonParser;
-import Logger.Logger;
-import Server.Server;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
 import java.util.Objects;
 import java.util.Scanner;
 
+public class Client {
+    private static String userName;
+    private static final Logger LOGGER = Logger.getInstance();
+    private static final String CLIENT_LOGS = "client_logs.log";
+    private static final String HOST = JsonParser.parseJson("host");
+    private static final int PORT = Integer.parseInt(Objects.requireNonNull(JsonParser.parseJson("port")));
+
+    private static final String CONNECTION_MSG = "Новое подключение к серверу. Порт: %d";
+    private static final String NAME_SET_MSG = "Имя пользователя установлено: %s";
+    private static final String SEND_MSG = "Отправил сообщение: %s";
+    private static final String DISCONNECT_MSG = "Пользователь %s отключился от сервера (Порт: %d)";
+
+    private static PrintWriter out;
+    private static BufferedReader in;
+    private static int serverPort;
+    private static final Scanner scanner = new Scanner(System.in);
+
+    public Client() {
+        try {
+            Socket socket = new Socket(HOST, PORT);
+            out = new PrintWriter(socket.getOutputStream(), true);
+            in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            serverPort = socket.getPort();
+
+            LOGGER.log(CLIENT_LOGS, Server.getServerName(), String.format(CONNECTION_MSG, serverPort));
+
+            Thread reader = getReaderThread(socket);
+            Thread sender = getSenderThread(socket);
+
+            reader.start();
+            sender.start();
+
+            sender.join();
+            reader.interrupt();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            scanner.close();
+        }
+    }
+
+    public static Thread getSenderThread(Socket socket) {
+        return new Thread(() -> {
+            try {
+                String input = scanner.nextLine().trim();
+                setUserName(input.isEmpty() ? "Аноним" : input);
+                LOGGER.log(CLIENT_LOGS, getUserName(), String.format(NAME_SET_MSG, getUserName()));
+                out.println(getUserName());
+
+                String msg;
+                while (!Thread.currentThread().isInterrupted()) {
+                    msg = scanner.nextLine();
+                    out.println(msg);
+                    LOGGER.log(CLIENT_LOGS, getUserName(), String.format(SEND_MSG, msg));
+
+                    if ("/exit".equalsIgnoreCase(msg)) {
+                        LOGGER.log(CLIENT_LOGS, Server.getServerName(),
+                                String.format(DISCONNECT_MSG, userName, serverPort));
+                        break;
+                    }
+                }
+                socket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    public static Thread getReaderThread(Socket socket) {
+        return new Thread(() -> {
+            String msg;
+            try {
+                while ((msg = in.readLine()) != null) {
+                    System.out.println(msg);
+                    if ("Сервер отключён".equals(msg)) {
+                        break;
+                    }
+                }
+            } catch (IOException e) {
+                if (!Thread.currentThread().isInterrupted()) {
+                    System.err.println("Разрыв соединения: " + e.getMessage());
+                }
+            } finally {
+                Thread.currentThread().interrupt();
+                try { socket.close(); } catch (IOException ignored) {}
+            }
+        });
+    }
+
+    public static void setUserName(String name) {
+        if (userName == null && name != null && !name.trim().isEmpty()) {
+            userName = name.trim();
+        } else if (userName == null) {
+            userName = "Аноним";
+        }
+    }
+
+    public static String getUserName() {
+        return userName;
+    }
+}
+/*
 public class Client {
     private static String userName;
     //Создаем логгер
@@ -118,3 +213,4 @@ public class Client {
         return userName;
     }
 }
+*/

@@ -1,19 +1,91 @@
-package Server;
 
-import JsonParser.JsonParser;
-import Logger.Logger;
 
-import java.io.BufferedReader;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Objects;
+import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class Server {
-    //Имя сервера
+    private static final String SERVER_NAME = "ServerChatOnline";
+    private static final Logger LOGGER = Logger.getInstance();
+    private static final String SERVER_LOGS = "server_logs.log";
+    private static final String CHAT_HISTORY = "chat_history.log";
+    private static final int PORT = Integer.parseInt(
+            java.util.Objects.requireNonNull(JsonParser.parseJson("port"))
+    );
+
+    private static final String START_MESSAGE = "Сервер запущен. Ожидание подключений...";
+    static final String JOIN_MESSAGE = "[СИСТЕМА] %s присоединился к чату";
+    private static final String LEAVE_MESSAGE = "[СИСТЕМА] %s покинул чат";
+    private static final String FORMAT_MESSAGE = "[%s] %s: %s";
+
+    static final List<ClientHandler> clients = new CopyOnWriteArrayList<>();
+    private static final Set<String> usedNames = Collections.synchronizedSet(new HashSet<>());
+    private static final AtomicInteger clientCounter = new AtomicInteger(0);
+
+    public static String getServerName() {
+        return SERVER_NAME;
+    }
+
+    public static void main(String[] args) {
+        try (ServerSocket serverSocket = new ServerSocket(PORT)) {
+            System.out.println(START_MESSAGE);
+            LOGGER.log(SERVER_LOGS, SERVER_NAME, START_MESSAGE);
+            logChat("[СИСТЕМА] Сервер запущен на порту " + PORT);
+
+            while (true) {
+                Socket socket = serverSocket.accept();
+                System.out.printf("Подключение #%d с порта: %d%n", clientCounter.incrementAndGet(), socket.getPort());
+                new Thread(new ClientHandler(socket)).start();
+            }
+        } catch (IOException e) {
+            System.err.println("Ошибка сервера: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    public static void broadcast(String sender, String msg) {
+        String formatted = String.format(FORMAT_MESSAGE, new Date(), sender, msg);
+        logChat(formatted);
+        LOGGER.log(SERVER_LOGS, sender, msg);
+        for (ClientHandler client : clients) {
+            client.sendMessage(formatted);
+        }
+    }
+
+    public static boolean registerName(String name) {
+        return usedNames.add(name);
+    }
+
+    public static void unregisterName(String name) {
+        usedNames.remove(name);
+    }
+
+    public static void removeClient(ClientHandler client) {
+        if (client.getUserName() != null) {
+            String name = client.getUserName();
+            unregisterName(name);
+            String msg = String.format(LEAVE_MESSAGE, name);
+            System.out.println(msg);
+            broadcast("Сервер", msg);
+        }
+        clients.remove(client);
+    }
+
+    private static synchronized void logChat(String msg) {
+        try (FileWriter w = new FileWriter(CHAT_HISTORY, true)) {
+            w.write(msg + "\n");
+        } catch (IOException e) {
+            System.err.println("Не удалось записать в историю: " + e.getMessage());
+        }
+    }
+}
+
+    /*//Имя сервера
     private static final String SERVER_NAME = "ServerChatOnline";
     //Создаем логгер
     private static final Logger LOGGER = Logger.getInstance();
@@ -100,4 +172,4 @@ public class Server {
             }
         });
     }
-}
+}*/

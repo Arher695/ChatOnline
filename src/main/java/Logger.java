@@ -1,5 +1,3 @@
-package Logger;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -33,7 +31,8 @@ public class Logger {
             logWriter.write(log);
             logWriter.flush();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.err.println("Ошибка записи в лог: " + e.getMessage());
+            ;
         }
     }
 }
