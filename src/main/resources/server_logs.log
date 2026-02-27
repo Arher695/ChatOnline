@@ -1,0 +1,105 @@
+2026-02-26T18:49:56.638967100[SERVER]: Server is running. Waiting for connections
+2026-02-26T18:50:05.533263400[SERVER]: New connection accepted. Port: 52016 
+
+2026-02-26T18:51:07.441692700[]: New user on server. Port: 52016
+2026-02-26T18:51:12.758007[]: Send message: вммд
+2026-02-26T18:51:12.759000900[]: Send message: вммд
+2026-02-26T18:51:15.187697800[]: Send message: ывмым
+2026-02-26T18:51:15.190676700[]: Send message: ывмым
+2026-02-26T18:51:17.401832600[]: Send message: ымывм
+2026-02-26T18:51:17.403820700[]: Send message: ымывм
+2026-02-26T18:51:20.824855600[]: Send message: вм
+2026-02-26T18:51:20.826842800[]: Send message: вм
+2026-02-26T18:52:48.539087200[]: Send message: щдьи
+2026-02-26T18:52:48.551999500[]: Send message: щдьи
+2026-02-26T18:52:49.904920700[]: Send message: м
+2026-02-26T18:52:49.907897800[]: Send message: м
+2026-02-26T18:52:51.415777700[]: Send message: ыкам
+2026-02-26T18:52:51.417764600[]: Send message: ыкам
+2026-02-26T18:52:59.039600300[]: Send message: /учше
+2026-02-26T18:52:59.047546800[]: Send message: /учше
+2026-02-26T18:53:09.233175900[]: Send message: /exit
+2026-02-26T18:53:09.280855200[SERVER]: User  (Port: 52016) was disconnected 
+
+2026-02-26T18:53:38.873209100[SERVER]: Server is running. Waiting for connections
+2026-02-26T18:54:11.974015[SERVER]: New connection accepted. Port: 52039 
+
+2026-02-26T18:54:17.886329400[Ivan]: New user on server. Port: 52039
+2026-02-26T18:54:24.801907600[Ivan]: Send message: scaaca
+2026-02-26T18:54:24.802898800[Ivan]: Send message: scaaca
+2026-02-26T18:54:26.975317900[Ivan]: Send message: wcda
+2026-02-26T18:54:26.976312700[Ivan]: Send message: wcda
+2026-02-26T18:54:28.680868900[Ivan]: Send message: virew
+2026-02-26T18:54:28.681862100[Ivan]: Send message: virew
+2026-02-26T18:54:37.471857400[Ivan]: Send message: /exit
+2026-02-26T18:54:37.473845900[SERVER]: User Ivan (Port: 52039) was disconnected 
+
+2026-02-27T07:35:56.973924800[SERVER]: Server is running. Waiting for connections
+2026-02-27T07:36:08.367916500[SERVER]: New connection accepted. Port: 49701 
+
+2026-02-27T07:36:14.605915800[Ivan]: New user on server. Port: 49701
+2026-02-27T08:48:35.451208300[SERVER]: Server is running. Waiting for connections
+2026-02-27T08:48:41.901204800[SERVER]: New connection accepted. Port: 63990 
+
+2026-02-27T08:48:47.236203[Ivan]: New user on server. Port: 63990
+2026-02-27T08:48:55.498202100[Ivan]: Send message: Hello
+2026-02-27T08:48:55.499198900[Ivan]: Send message: Hello
+2026-02-27T08:49:04.163194400[SERVER]: New connection accepted. Port: 63995 
+
+2026-02-27T08:49:13.423187300[Ivan]: New user on server. Port: 63995
+2026-02-27T08:49:38.948176400[Ivan]: Send message: Hi
+2026-02-27T08:49:38.951176100[Ivan]: Send message: Hi
+2026-02-27T08:49:47.556168800[Ivan]: Send message: /exit
+2026-02-27T08:49:47.561174700[SERVER]: User Ivan (Port: 63995) was disconnected 
+
+2026-02-27T08:49:55.903166200[Ivan]: Send message: /exit
+2026-02-27T08:49:55.905165900[SERVER]: User Ivan (Port: 63990) was disconnected 
+
+2026-02-27T09:02:50.553341[SERVER]: New connection accepted. Port: 50000 
+
+2026-02-27T09:02:50.563340[TestUser]: New user on server. Port: 50000
+2026-02-27T09:02:50.564342300[TestUser]: Send message: Hello
+2026-02-27T09:02:50.565340600[TestUser]: Send message: Hello
+2026-02-27T09:02:50.566340300[TestUser]: Send message: /exit
+2026-02-27T09:02:50.566340300[SERVER]: User TestUser (Port: 50000) was disconnected 
+
+2026-02-27T09:34:35.888241600[SERVER]: Server is running. Waiting for connections
+2026-02-27T09:41:31.192014800[SERVER]: Server is running. Waiting for connections
+2026-02-27T09:41:37.832014600[SERVER]: New connection accepted. Port: 64391 
+
+2026-02-27T09:41:51.435005400[SERVER]: New connection accepted. Port: 64396 
+
+2026-02-27T09:42:00.725000300[SERVER]: New connection accepted. Port: 64401 
+
+2026-02-27T09:43:26.814953300[SERVER]: Server is running. Waiting for connections
+2026-02-27T09:43:32.863949300[SERVER]: New connection accepted. Port: 64415 
+
+2026-02-27T09:43:36.459948[f;b,[rofgb]: New user on server. Port: 64415
+2026-02-27T09:43:47.881943400[f;b,[rofgb]: Send message: /exit
+2026-02-27T09:43:47.882943[SERVER]: User f;b,[rofgb (Port: 64415) was disconnected 
+
+2026-02-27T09:45:58.843676600[SERVER]: New connection accepted. Port: 50000 
+
+2026-02-27T09:45:58.854676[TestUser]: New user on server. Port: 50000
+2026-02-27T09:45:58.855676700[TestUser]: Send message: Hello
+2026-02-27T09:45:58.856677400[TestUser]: Send message: Hello
+2026-02-27T09:45:58.857675900[TestUser]: Send message: /exit
+2026-02-27T09:45:58.857675900[SERVER]: User TestUser (Port: 50000) was disconnected 
+
+2026-02-27T10:14:52.874152[SERVER]: Server is running. Waiting for connections
+2026-02-27T10:15:04.436146[SERVER]: New connection accepted. Port: 62865 
+
+2026-02-27T10:15:07.738145500[gbn lfmgn ]: New user on server. Port: 62865
+2026-02-27T10:15:10.579142800[gbn lfmgn ]: Send message:  ombfgob
+2026-02-27T10:15:10.580142300[gbn lfmgn ]: Send message:  ombfgob
+2026-02-27T10:15:19.126137900[gbn lfmgn ]: Send message: /eXit
+2026-02-27T10:15:19.128138600[SERVER]: User gbn lfmgn  (Port: 62865) was disconnected 
+
+2026-02-27T10:16:12.715109100[SERVER]: New connection accepted. Port: 50000 
+
+2026-02-27T10:16:12.727111[TestUser]: New user on server. Port: 50000
+2026-02-27T10:16:12.728111300[TestUser]: Send message: Hello
+2026-02-27T10:16:12.729111400[TestUser]: Send message: Hello
+2026-02-27T10:16:12.731110300[TestUser]: Send message: /exit
+2026-02-27T10:16:12.737110300[SERVER]: User TestUser (Port: 50000) was disconnected 
+
